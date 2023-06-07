@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+import firebase from 'firebase';
 import client from '../utils/client';
 
 const endpoint = client.databaseURL;
@@ -20,4 +22,38 @@ const getVocab = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default getVocab;
+const createVocab = (payload) => new Promise((resolve, reject) => {
+  const timestamp = firebase.database.ServerValue.TIMESTAMP;
+
+  payload.createdAt = timestamp;
+
+  fetch(`${endpoint}/vocab.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const updateVocab = (payload) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/vocab/${payload.firebaseKey}.json`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+export {
+  updateVocab,
+  createVocab,
+  getVocab,
+};
