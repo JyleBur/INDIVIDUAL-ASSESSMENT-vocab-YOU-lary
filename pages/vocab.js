@@ -1,16 +1,33 @@
 import renderToDom from '../utils/renderToDom';
 import clearDom from '../utils/clearDom';
 
+const emptyVocab = () => {
+  const domString = '<p>You have not created any vocab words.</p>';
+  renderToDom('#vocab', domString);
+};
+
 const showVocab = (array) => {
   clearDom();
 
+  if (array.length === 0) {
+    emptyVocab();
+    return;
+  }
+
   let domString = '';
+  let domFilter;
   array.forEach((item) => {
     const createdTimestamp = item.createdAt;
     const date = new Date(createdTimestamp);
 
     const formattedDate = date.toLocaleDateString();
     const formattedTime = date.toLocaleTimeString();
+
+    domFilter = `        
+    <button type="button" class="btn btn-outline-success" id="math-btn">Math</button>
+    <button type="button" class="btn btn-outline-success" id="science-btn">Science</button>
+    <button type="button" class="btn btn-outline-success" id="socialstudies-btn">Social Studies</button>
+    <button type="button" class="btn btn-outline-success" id="english-btn">English</button>`;
 
     domString += `
       <div class="card" style="width: 18rem;">
@@ -19,11 +36,13 @@ const showVocab = (array) => {
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Category: ${item.category}</li>
-          <li class="list-group-item">Created At: ${formattedDate} ${formattedTime}</li>
           <li class="list-group-item">${item.definition}</li>
+          <li class="list-group-item">Created At: ${formattedDate} ${formattedTime}</li>
+          <button id="delete-vocab-btn--${item.firebaseKey}" class="btn btn-danger">Delete</button>
         </ul>
       </div>`;
   });
+  renderToDom('#filter', domFilter);
   renderToDom('#vocab', domString);
 };
 

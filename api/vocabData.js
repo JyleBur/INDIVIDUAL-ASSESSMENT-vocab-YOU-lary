@@ -52,8 +52,31 @@ const updateVocab = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const deleteVocab = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/vocab/${firebaseKey}.json`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
+const filterVocab = (uid, categoryKeyword) => new Promise((resolve, reject) => {
+  getVocab(uid)
+    .then((vocabData) => {
+      const filteredVocab = vocabData.filter((item) => item.category === categoryKeyword);
+      resolve(filteredVocab);
+    })
+    .catch(reject);
+});
+
 export {
   updateVocab,
   createVocab,
   getVocab,
+  deleteVocab,
+  filterVocab,
 };
