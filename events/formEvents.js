@@ -8,7 +8,7 @@ const formEvents = (user) => {
     if (e.target.id.includes('submit-word')) {
       const payload = {
         title: document.querySelector('#title').value,
-        category: document.querySelector('#category').value,
+        category: document.querySelector('input[name="optradio"]:checked').value,
         definition: document.querySelector('#definition').value,
         uid: user.uid,
       };
