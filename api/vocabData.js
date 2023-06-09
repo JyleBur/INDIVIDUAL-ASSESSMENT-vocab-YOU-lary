@@ -64,6 +64,18 @@ const deleteVocab = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getSingleVocab = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/vocab/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 const filterVocab = (uid, categoryKeyword) => new Promise((resolve, reject) => {
   getVocab(uid)
     .then((vocabData) => {
@@ -78,5 +90,6 @@ export {
   createVocab,
   getVocab,
   deleteVocab,
+  getSingleVocab,
   filterVocab,
 };
