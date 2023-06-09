@@ -12,20 +12,16 @@ const addVocabForm = (obj = {}) => {
 
   <div id="subject-check">
     <div class="form-check">
-    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="Math" value="${obj.category || ''}" required>Math
+    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="Javascript" value="${obj.category || ''}" required>Javascript
     <label class="form-check-label" for="radio1"></label>
   </div>
   <div class="form-check">
-    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="Science" value="${obj.category || ''}" required>Science
+    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="HTML" value="${obj.category || ''}" required>HTML
     <label class="form-check-label" for="radio2"></label>
   </div>
   <div class="form-check">
-  <input type="radio" class="form-check-input" id="radio3" name="optradio" value="Social Studies" value="${obj.category || ''}" required>Social Studies
+  <input type="radio" class="form-check-input" id="radio3" name="optradio" value="CSS" value="${obj.category || ''}" required>CSS
   <label class="form-check-label" for="radio1"></label>
-</div>
-<div class="form-check">
-  <input type="radio" class="form-check-input" id="radio4" name="optradio" value="English" value="${obj.category || ''}" required>English
-  <label class="form-check-label" for="radio2"></label>
 </div>
   </div>
 

@@ -24,10 +24,9 @@ const showVocab = (array) => {
     const formattedTime = date.toLocaleTimeString();
 
     domFilter = `        
-    <button type="button" class="btn btn-outline-success" id="math-btn">Math</button>
-    <button type="button" class="btn btn-outline-success" id="science-btn">Science</button>
-    <button type="button" class="btn btn-outline-success" id="socialstudies-btn">Social Studies</button>
-    <button type="button" class="btn btn-outline-success" id="english-btn">English</button>`;
+    <button type="button" class="btn btn-outline-success" id="javascript-btn">Javascript</button>
+    <button type="button" class="btn btn-outline-success" id="html-btn">HTML</button>
+    <button type="button" class="btn btn-outline-success" id="css-btn">CSS</button>`;
 
     domString += `
       <div class="card" style="width: 18rem;">
