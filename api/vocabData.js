@@ -1,9 +1,10 @@
 /* eslint-disable no-param-reassign */
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import client from '../utils/client';
 
 const endpoint = client.databaseURL;
 
+// GET VOCAB
 const getVocab = (uid) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/vocab.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
@@ -22,6 +23,7 @@ const getVocab = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// CREATE VOCAB
 const createVocab = (payload) => new Promise((resolve, reject) => {
   const timestamp = firebase.database.ServerValue.TIMESTAMP;
 
@@ -39,6 +41,7 @@ const createVocab = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// UPDATE VOCAB
 const updateVocab = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/vocab/${payload.firebaseKey}.json`, {
     method: 'PATCH',
@@ -52,6 +55,7 @@ const updateVocab = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// DELETE VOCAB
 const deleteVocab = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/vocab/${firebaseKey}.json`, {
     method: 'DELETE',
@@ -64,6 +68,7 @@ const deleteVocab = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET SINGLE VOCAB
 const getSingleVocab = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/vocab/${firebaseKey}.json`, {
     method: 'GET',
@@ -76,6 +81,7 @@ const getSingleVocab = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// FILTER VOCAB VIA BUTTONS
 const filterVocab = (uid, categoryKeyword) => new Promise((resolve, reject) => {
   getVocab(uid)
     .then((vocabData) => {
