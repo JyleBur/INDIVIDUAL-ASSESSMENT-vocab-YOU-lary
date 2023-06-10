@@ -8,6 +8,7 @@ const formEvents = (user) => {
     if (e.target.id.includes('submit-word')) {
       const payload = {
         title: document.querySelector('#title').value,
+        // Retrieves the value of the checked radio button with the name "optradio" from the HTML document.
         category: document.querySelector('input[name="optradio"]:checked').value,
         definition: document.querySelector('#definition').value,
         uid: user.uid,

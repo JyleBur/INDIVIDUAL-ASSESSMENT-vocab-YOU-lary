@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import firebase from 'firebase/app';
+import firebase from 'firebase';
 import client from '../utils/client';
 
 const endpoint = client.databaseURL;
@@ -27,6 +27,7 @@ const getVocab = (uid) => new Promise((resolve, reject) => {
 const createVocab = (payload) => new Promise((resolve, reject) => {
   const timestamp = firebase.database.ServerValue.TIMESTAMP;
 
+  // Assign the timestamp to the createdAt property of the payload object
   payload.createdAt = timestamp;
 
   fetch(`${endpoint}/vocab.json`, {
