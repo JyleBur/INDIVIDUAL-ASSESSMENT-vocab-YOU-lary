@@ -30,18 +30,20 @@ const showVocab = (array) => {
     <button type="button" class="btn btn-outline-success" id="css-btn">CSS</button>`;
 
     domString += `
-      <div class="card" style="width: 18rem;">
-        <div class="card-title">
-          <h5>${item.title}</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Category: ${item.category}</li>
-          <li class="list-group-item">${item.definition}</li>
-          <li class="list-group-item">Created At: ${formattedDate} ${formattedTime}</li>
-          <button id="edit-book-btn--${item.firebaseKey}" type="button" class="btn btn-primary">Edit</button>
-          <button id="delete-vocab-btn--${item.firebaseKey}" class="btn btn-danger">Delete</button>
-        </ul>
-      </div>`;
+    <div class="card" style="width: 18rem;">
+      <div class="card-title">
+        <h5>${item.title}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Language: ${item.category}</li>
+        <li class="list-group-item">${item.definition}</li>
+        <li class="list-group-item">Created At: ${formattedDate} ${formattedTime}</li>
+      </ul>
+      <div class="card-body">
+        <button id="edit-book-btn--${item.firebaseKey}" type="button" class="btn btn-primary">Edit</button>
+        <button id="delete-vocab-btn--${item.firebaseKey}" class="btn btn-danger">Delete</button>
+      </div>
+    </div>`;
   });
   renderToDom('#filter', domFilter);
   renderToDom('#vocab', domString);
