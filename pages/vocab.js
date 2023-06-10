@@ -2,7 +2,7 @@ import renderToDom from '../utils/renderToDom';
 import clearDom from '../utils/clearDom';
 
 const emptyVocab = () => {
-  const domString = '<p>You have not created any vocab words.</p>';
+  const domString = '<p>You have not created any vocab words or have no words in this category.</p>';
   renderToDom('#vocab', domString);
 };
 
@@ -24,6 +24,7 @@ const showVocab = (array) => {
     const formattedTime = date.toLocaleTimeString();
 
     domFilter = `        
+    <button type="button" class="btn btn-outline-success" id="all-btn">All</button>
     <button type="button" class="btn btn-outline-success" id="javascript-btn">Javascript</button>
     <button type="button" class="btn btn-outline-success" id="html-btn">HTML</button>
     <button type="button" class="btn btn-outline-success" id="css-btn">CSS</button>`;
@@ -37,6 +38,7 @@ const showVocab = (array) => {
           <li class="list-group-item">Category: ${item.category}</li>
           <li class="list-group-item">${item.definition}</li>
           <li class="list-group-item">Created At: ${formattedDate} ${formattedTime}</li>
+          <button id="edit-book-btn--${item.firebaseKey}" type="button" class="btn btn-primary">Edit</button>
           <button id="delete-vocab-btn--${item.firebaseKey}" class="btn btn-danger">Delete</button>
         </ul>
       </div>`;

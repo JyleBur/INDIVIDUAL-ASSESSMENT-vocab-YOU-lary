@@ -21,6 +21,21 @@ const formEvents = (user) => {
         });
       });
     }
+
+    if (e.target.id.includes('update-word')) {
+      const [, firebaseKey] = e.target.id.split('--');
+      const payload = {
+        title: document.querySelector('#title').value,
+        category: document.querySelector('input[name="optradio"]:checked').value,
+        definition: document.querySelector('#definition').value,
+        uid: user.uid,
+        firebaseKey
+      };
+
+      updateVocab(payload).then(() => {
+        getVocab(user.uid).then(showVocab);
+      });
+    }
   });
 };
 
